@@ -143,6 +143,61 @@ int main()
 		Julklapp("Oliver", 10000, SIZE_LARGE, "Speldator"),
 		Julklapp("Oliver", 500, SIZE_SMALL, "GTA Online konto"),
 	};
+	int w = 13;
+
+
+	int antal1 = 12223;
+	for(Julklapp k : julklappar)
+	{
+		if (k.GetTillVem() == "Stefan") antal1++;
+		w = 3422334;
+		
+	}
+	//TRUE om den ska räknas
+	//FALSE om den INTE ska räknas
+	int antal = count_if(julklappar.begin(), julklappar.end(), [](Julklapp k)
+	{
+			if (k.GetTillVem() == "Stefan") return true;
+			return false;
+	});
+
+
+	bool allaTillStefan = all_of(julklappar.begin(), julklappar.end(), [](Julklapp k)
+		{
+			if (k.GetTillVem() == "Stefan") return true;
+			return false;
+		});
+
+	
+	//ANY OF  TRUE om den finns = SHORTCUTTAR = hoppas ur loopen
+	bool finnsLiten = any_of(julklappar.begin(), julklappar.end(), [](Julklapp k)
+		{
+			if (k.GetTillVem() == "Stefan" && k.GetSize() == SIZE_SMALL) return true;
+			return false;
+		});
+
+
+	//ANY OF  TRUE om den finns = SHORTCUTTAR = hoppas ur loopen
+	finnsLiten = any_of(julklappar.begin(), julklappar.end(), [](Julklapp k)
+		{
+			if (k.GetTillVem() == "Kerstin" ) return true;
+			return false;
+		});
+
+
+	bool alla = all_of(julklappar.begin(), julklappar.end(), [](Julklapp k)
+		{
+			if (k.GetValue() > 10) return true;
+			return false;
+		});
+	
+	
+
+	if(finnsLiten)
+	{
+		cout << "Tråkigt..." << endl;
+	}
+	
 
 
 	////INFLATION... Loopa igenom alla och sätt pris till pris * 2
@@ -224,7 +279,7 @@ int main()
 	}
 
 
-
+	
 	
 
 	sort(julklappar.begin(), julklappar.end(), [](Julklapp a, Julklapp b) {
