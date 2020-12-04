@@ -168,6 +168,17 @@ int main()
 
 
 
+	for_each(julklappar.begin(), julklappar.end(), [](Julklapp& j)
+		{
+			if(j.GetTillVem() == "Stefan")
+			{
+				j.SetValue(j.GetValue() - 50);
+			}
+		});
+
+
+	
+
 
 	for_each(julklappar.begin(), julklappar.end(), [](Julklapp &j)
 		{
@@ -181,16 +192,49 @@ int main()
 		});
 
 
-	
 
-
-	
-
-
+	//LAMBDA för sort = säg vem av dessa två som ska komma först
+	// men exakt??? om TRUE så ska A komma först
+	// om FALSE ska B komma först
+	// hur ska man veta det??? TESTA... som 0,1 index = trial and error
 	sort(julklappar.begin(), julklappar.end(), [](Julklapp a, Julklapp b) {
-		if (a.GetTillVem() == b.GetTillVem()) return a.GetValue() < b.GetValue();
+
+		if (a.GetValue() > b.GetValue())
+			return true;
+		return false;
+		
+		});
+
+	//reverse(julklappar.begin(), julklappar.end());
+
+
+
+	//LAMBDA för sort = säg vem av dessa två som ska komma först
+	// men exakt??? om TRUE så ska A komma först
+	// om FALSE ska B komma först
+	// hur ska man veta det??? TESTA... som 0,1 index = trial and error
+	sort(julklappar.begin(), julklappar.end(), [](Julklapp a, Julklapp b) {
+		if (a.GetTillVem() == b.GetTillVem()) return a.GetSize() < b.GetSize();
 		return a.GetTillVem() < b.GetTillVem();
 		});
+
+	
+	for (Julklapp julklapp : julklappar) {
+		cout << julklapp.GetTillVem() << " " << julklapp.GetValue() << endl;
+	}
+
+
+
+	
+
+	sort(julklappar.begin(), julklappar.end(), [](Julklapp a, Julklapp b) {
+		//
+		string sortKeyForA = a.GetTillVem() + to_string(a.GetSize());
+		string sortKeyForB = b.GetTillVem() + to_string(b.GetSize());
+		return sortKeyForA < sortKeyForB;
+		});
+
+
 
 
 	//vs for
